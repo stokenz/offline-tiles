@@ -1,0 +1,13 @@
+{
+  order pmtiles_proxy before reverse_proxy
+}
+
+localhost:8080 {
+  handle_path /tiles/* {
+    pmtiles_proxy {
+      bucket file:///data
+      cache_size 256
+      public_url https://localhost:8080/tiles
+    }
+  }
+}
